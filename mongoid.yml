@@ -1,0 +1,10 @@
+production:
+
+  sessions:
+
+    default:
+
+      hosts:
+        - localhost:6801
+      # Define the default database name.
+      database: nxt-rbt
