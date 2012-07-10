@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+10.times do
+  Waypoint.create
+end
+
+10.times do
+  WaypointAssociation.create(:waypoint_id => Waypoint.random.id, :sibling_id =>  Waypoint.random.id)
+end
