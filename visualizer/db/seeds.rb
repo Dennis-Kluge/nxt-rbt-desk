@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 10.times do
-  Waypoint.create
+  Waypoint.create(:x => rand(-10..10), :y => rand(-10..10) )
 end
 
 10.times do
