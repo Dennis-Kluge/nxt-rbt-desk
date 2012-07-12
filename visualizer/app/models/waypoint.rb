@@ -10,5 +10,13 @@ class Waypoint < ActiveRecord::Base
       find(:first, :offset =>rand(c))
     end
   end
+  
+  def x
+    self.read_attribute(:x) / 50.0
+  end
+  
+  def y
+    self.read_attribute(:y) / 50.0
+  end
       
 end

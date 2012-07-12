@@ -10,23 +10,13 @@ window.onload = ->
         labelThreshold: 6,
         defaultEdgeType: 'curve'
       }).graphProperties({
-        minNodeSize: 1,
+        minNodeSize: 0.5,
         maxNodeSize: 5,
         minEdgeSize: 1,
         maxEdgeSize: 1
       }).mouseProperties({
         maxRatio: 4
       });
-  # sigInst.addNode('hello',{
-  #   label: 'Hello',
-  #   color: '#ff0000',
-  #   x: '10',
-  #   y: '10'
-  # }).addNode('world',{
-  #   label: 'World !',
-  #   color: '#00ff00',
-  #   x: '-10',
-  #   y: '-10'
   # }).addEdge('hello_world','hello','world')
   
   # for waypoint in gon.waypoints
@@ -38,7 +28,6 @@ window.onload = ->
   # 
   # sigInst.addEdge('foo','1','2')
   # alert(gon.waypoints)
-  console.log(gon.waypoints[2].x)
   
   for waypoint in gon.waypoints
     sigInst.addNode(waypoint.id,{
@@ -47,7 +36,12 @@ window.onload = ->
       x: waypoint.x,
       y: waypoint.y
     })
-  
+    
+  for edge in gon.edges
+    edge_name = edge.waypoint_id + '_' + edge.sibling_id
+    sigInst.addEdge(edge_name,edge.waypoint_id, edge.sibling_id)
+    
+  console.log(gon.edges)
   
   
   sigInst.draw()

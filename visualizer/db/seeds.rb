@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 10.times do
-  Waypoint.create(:x => rand(-10..10), :y => rand(-10..10) )
+  Waypoint.create(:x => rand(-500..500), :y => rand(-500..500) )
 end
 
-10.times do
+20.times do
   WaypointAssociation.create(:waypoint_id => Waypoint.random.id, :sibling_id =>  Waypoint.random.id)
 end

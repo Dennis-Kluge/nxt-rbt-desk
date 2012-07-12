@@ -5630,3 +5630,1140 @@ Served asset /application.js - 304 Not Modified (5ms)
 
 Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 00:09:50 +0200
 Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Processing by WaypointsController#index as HTML
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (79ms)  (pid 4251)
+Compiled application.js  (5ms)  (pid 4251)
+Completed 200 OK in 168ms (Views: 159.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /waypoints.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:06:58 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to AddWaypoints (20120709204619)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "waypoints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "waypoint_association" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709204619')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateWaypointAssociations (20120709205459)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "waypoint_associations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709205459')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddAssociationIdsToWaypointAssociations (20120710173653)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "waypoint_associations" ADD "waypoint_id" Integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "waypoint_associations" ADD "sibling_id" Integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120710173653')
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddCoordinatesToWaypoints (20120711201848)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "waypoints" ADD "x" Integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "waypoints" ADD "y" Integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120711201848')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoint_association")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("waypoint_associations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoints")[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -453], ["y", 167]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -35], ["y", -51]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -476], ["y", -52]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -165], ["y", 78]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -75], ["y", -158]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", 236], ["y", 89]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -8], ["y", 246]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -45], ["y", -56]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -427], ["y", 382]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["x", -60], ["y", -81]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 2], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 7]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 9], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 9]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 3]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 3]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 3]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 9]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 5]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 6], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 7]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 10], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 10]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:10:54 UTC +00:00], ["waypoint_id", 7]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 14ms (Views: 7.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /sigma.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:10:58 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:18:02 +0200
+Processing by WaypointsController#index as HTML
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" 
+Completed 500 Internal Server Error in 6ms
+
+NameError (uninitialized constant WaypointsController::WaypointAssociations):
+  app/controllers/waypoints_controller.rb:4:in `index'
+
+
+  Rendered /Users/db/.rvm/gems/ruby-1.9.3-p0@visualizer/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/db/.rvm/gems/ruby-1.9.3-p0@visualizer/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/db/.rvm/gems/ruby-1.9.3-p0@visualizer/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:18:15 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (64ms)  (pid 4251)
+Compiled application.js  (2ms)  (pid 4251)
+Completed 200 OK in 126ms (Views: 114.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /waypoints.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:16 +0200
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.2ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (56ms)  (pid 4251)
+Compiled application.js  (3ms)  (pid 4251)
+Completed 200 OK in 109ms (Views: 107.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:18:44 +0200
+Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.2ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (66ms)  (pid 4251)
+Compiled application.js  (2ms)  (pid 4251)
+Completed 200 OK in 97ms (Views: 95.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:22:05 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to AddWaypoints (20120709204619)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "waypoints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "waypoint_association" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709204619')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateWaypointAssociations (20120709205459)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "waypoint_associations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709205459')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddAssociationIdsToWaypointAssociations (20120710173653)
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "waypoint_associations" ADD "waypoint_id" Integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "waypoint_associations" ADD "sibling_id" Integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120710173653')
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddCoordinatesToWaypoints (20120711201848)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "waypoints" ADD "x" Integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "waypoints" ADD "y" Integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120711201848')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoint_association")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("waypoint_associations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoints")[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 40], ["y", -109]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", -343], ["y", 196]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", -270], ["y", -473]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 324], ["y", -208]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 400], ["y", 313]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 194], ["y", -319]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", -429], ["y", -301]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 1], ["y", 103]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", -354], ["y", -398]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["x", 18], ["y", -8]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 6], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.2ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 9], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 5]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 8], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 2]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 1]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 9]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 6], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 5]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 7]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 5]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 10]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 2]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 6], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.2ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 8], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 8]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 1]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 2], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 1]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 7]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["sibling_id", 8], ["updated_at", Thu, 12 Jul 2012 21:23:05 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 22ms (Views: 9.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:23:07 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (60ms)  (pid 4251)
+Compiled application.js  (4ms)  (pid 4251)
+Completed 200 OK in 127ms (Views: 113.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /waypoints.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:16 +0200
+Served asset /application.js - 304 Not Modified (9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:24:38 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.2ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled waypoints.js  (72ms)  (pid 4251)
+Compiled application.js  (3ms)  (pid 4251)
+Completed 200 OK in 131ms (Views: 128.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /waypoints.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /waypoints.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:24:39 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to AddWaypoints (20120709204619)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "waypoints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "waypoint_association" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709204619')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateWaypointAssociations (20120709205459)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "waypoint_associations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709205459')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddAssociationIdsToWaypointAssociations (20120710173653)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "waypoint_associations" ADD "waypoint_id" Integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "waypoint_associations" ADD "sibling_id" Integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120710173653')
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddCoordinatesToWaypoints (20120711201848)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "waypoints" ADD "x" Integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "waypoints" ADD "y" Integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120711201848')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoint_association")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("waypoint_associations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoints")[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to AddWaypoints (20120709204619)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "waypoints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "waypoint_association" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709204619')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreateWaypointAssociations (20120709205459)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "waypoint_associations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120709205459')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddAssociationIdsToWaypointAssociations (20120710173653)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "waypoint_associations" ADD "waypoint_id" Integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "waypoint_associations" ADD "sibling_id" Integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120710173653')
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddCoordinatesToWaypoints (20120711201848)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "waypoints" ADD "x" Integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "waypoints" ADD "y" Integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120711201848')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoint_association")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("waypoint_associations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("waypoints")[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", 147], ["y", 476]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", -112], ["y", -343]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", 290], ["y", -294]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", -456], ["y", -302]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", -220], ["y", 340]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", 382], ["y", -128]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", 282], ["y", 172]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", 381], ["y", 423]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", -126], ["y", -238]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoints" ("created_at", "updated_at", "x", "y") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["x", -213], ["y", -251]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 10 AND "waypoint_associations"."sibling_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 6], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 10]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 6 AND "waypoint_associations"."sibling_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 2], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 6 AND "waypoint_associations"."sibling_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 7], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 4 AND "waypoint_associations"."sibling_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 4]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 1 AND "waypoint_associations"."sibling_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 5], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 1]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 8 AND "waypoint_associations"."sibling_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 2], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 8]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 4 AND "waypoint_associations"."sibling_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 7], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 4]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 2 AND "waypoint_associations"."sibling_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 10], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 2]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 8[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 9 AND "waypoint_associations"."sibling_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 8], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 9]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 6[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 7 AND "waypoint_associations"."sibling_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 10], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 7]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 10 AND "waypoint_associations"."sibling_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 10]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 6 AND "waypoint_associations"."sibling_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 1], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 10 AND "waypoint_associations"."sibling_id" = 4) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mWaypointAssociation Exists (0.1ms)[0m  SELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 3 AND "waypoint_associations"."sibling_id" = 4) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 3]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mWaypointAssociation Exists (0.1ms)[0m  SELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 1 AND "waypoint_associations"."sibling_id" = 8) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 8], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 1]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mWaypointAssociation Exists (0.1ms)[0m  SELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 8 AND "waypoint_associations"."sibling_id" = 10) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 10], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 8]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "waypoints" [0m
+  [1m[35mWaypoint Load (0.1ms)[0m  SELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 4
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mWaypointAssociation Exists (0.1ms)[0m  SELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 1 AND "waypoint_associations"."sibling_id" = 5) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 9[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 10 AND "waypoint_associations"."sibling_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 10]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 5[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 2[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 6 AND "waypoint_associations"."sibling_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 3], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 7[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "waypoints" 
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" LIMIT 1 OFFSET 3[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mWaypointAssociation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "waypoint_associations" WHERE ("waypoint_associations"."waypoint_id" = 8 AND "waypoint_associations"."sibling_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "waypoint_associations" ("created_at", "sibling_id", "updated_at", "waypoint_id") VALUES (?, ?, ?, ?)  [["created_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["sibling_id", 4], ["updated_at", Thu, 12 Jul 2012 21:27:36 UTC +00:00], ["waypoint_id", 8]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 50ms (Views: 10.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /waypoints.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:27:45 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled application.css  (0ms)  (pid 4251)
+Completed 200 OK in 19ms (Views: 16.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /application.css - 200 OK (2ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:51 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.2ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.2ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 8.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /waypoints.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:28:54 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled application.css  (0ms)  (pid 4251)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /application.css - 200 OK (2ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:19 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.1ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.1ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled application.css  (0ms)  (pid 4251)
+Completed 200 OK in 37ms (Views: 35.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /application.css - 200 OK (4ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /sigma.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:28 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Processing by WaypointsController#index as HTML
+  [1m[36mWaypoint Load (0.2ms)[0m  [1mSELECT "waypoints".* FROM "waypoints" [0m
+  [1m[35mWaypointAssociation Load (0.2ms)[0m  SELECT "waypoint_associations".* FROM "waypoint_associations" 
+  Rendered waypoints/index.html.erb within layouts/application (0.0ms)
+Compiled application.css  (0ms)  (pid 4251)
+Completed 200 OK in 16ms (Views: 14.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /application.css - 200 OK (3ms)
+
+
+Started GET "/assets/waypoints.css?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /waypoints.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/sigma.min.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /sigma.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/waypoints.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /waypoints.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-07-12 23:29:43 +0200
+Served asset /application.js - 304 Not Modified (1ms)
