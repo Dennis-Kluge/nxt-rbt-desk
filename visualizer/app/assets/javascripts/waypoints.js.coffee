@@ -8,30 +8,21 @@ window.onload = ->
         defaultLabelBGColor: '#fff',
         defaultLabelHoverColor: '#000',
         labelThreshold: 6,
-        defaultEdgeType: 'curve'
+        defaultEdgeType: 'curve',
+        edgeColor: '#000000'
       }).graphProperties({
         minNodeSize: 0.5,
         maxNodeSize: 5,
         minEdgeSize: 1,
-        maxEdgeSize: 1
+        maxEdgeSize: 4
       }).mouseProperties({
         maxRatio: 4
       });
-  # }).addEdge('hello_world','hello','world')
-  
-  # for waypoint in gon.waypoints
-  #   sigInst.addNode(waypoint,{
-  #     label: waypoint,
-  #     color: '#ff0000',
-  #     
-  #   })
-  # 
-  # sigInst.addEdge('foo','1','2')
-  # alert(gon.waypoints)
+
   
   for waypoint in gon.waypoints
     sigInst.addNode(waypoint.id,{
-      label: waypoint.id,
+      label: waypoint.waypoint_id,
       color: '#ff0000',
       x: waypoint.x,
       y: waypoint.y

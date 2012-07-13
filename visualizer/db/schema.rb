@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711201848) do
+ActiveRecord::Schema.define(:version => 20120713114651) do
 
   create_table "waypoint_association", :force => true do |t|
     t.integer  "distance"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(:version => 20120711201848) do
   end
 
   create_table "waypoints", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "x"
     t.integer  "y"
+    t.integer  "waypoint_id"
   end
 
 end

@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-10.times do
-  Waypoint.create(:x => rand(-500..500), :y => rand(-500..500) )
+10.times do |i|
+  Waypoint.create(:x => rand(-500..500), :y => rand(-500..500), :waypoint_id => i )
 end
 
 20.times do
