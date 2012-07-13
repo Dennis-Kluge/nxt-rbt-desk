@@ -1,5 +1,10 @@
 
 window.onload = ->
+  draw_graph()
+  
+  setTimeout("location.reload(true);",10000);
+  
+draw_graph = ->
   sigRoot = document.getElementById('graph');
   # // var sigRoot = document.body;
   sigInst = sigma.init(sigRoot) .drawingProperties({
@@ -19,7 +24,7 @@ window.onload = ->
         maxRatio: 4
       });
 
-  
+
   for waypoint in gon.waypoints
     sigInst.addNode(waypoint.id,{
       label: waypoint.waypoint_id,
@@ -27,12 +32,10 @@ window.onload = ->
       x: waypoint.x,
       y: waypoint.y
     })
-    
+
   for edge in gon.edges
     edge_name = edge.waypoint_id + '_' + edge.sibling_id
     sigInst.addEdge(edge_name,edge.waypoint_id, edge.sibling_id)
-    
-  console.log(gon.edges)
-  
-  
+
+
   sigInst.draw()
