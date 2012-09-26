@@ -5,7 +5,8 @@ require "jar/pccomm.jar"
 require "jar/pctools.jar"
 require "jar/3rdparty/bluecove.jar"
 require "jar/3rdparty/bluecove-gpl.jar"
-#require "mongoid"
+require "mongoid"
+require "lib/nxt-rbt-desk/waypoint"
 
 import "lejos.pc.comm.NXTInfo"
 import "lejos.pc.comm.NXTCommFactory"
@@ -15,23 +16,29 @@ import "java.io.InputStream"
 import "java.io.BufferedInputStream"
 
 
-#Mongoid.load!("mongoid.yml")
 
 def process_message(message)
   puts "Message: #{message}"
-  #parsed_message = message.split(" ")
-  #waypoint = Waypoint.new(x: parsed_message[0], y: parsed_message[1], feature: parsed_message[2])
-  #waypoint.save
+  parsed_message = message.split(" ")
+  waypoint = Waypoint.new(x: parsed_message[0], y: parsed_message[1], feature: parsed_message[2])
+  waypoint.save  
 end
 
-def start
+def start  
+  Mongoid.load!("config/mongoid.yml", :production)
+  
+  # ["10 20 point",
+  #  "-20 10 node",
+  #  "12 14 point" 
+  # ].each do |m|
+  #   process_message m
+  # end
+
   nxtInfo = NXTInfo.new
   nxtInfo.deviceAddress = "00165312BBE5"
   com = NXTCommBluecove.new
   com.open(nxtInfo)
   input_stream = BufferedInputStream.new(com.get_input_stream)
-
-  #redis = Redis.new(:port => 6380)
 
   message = ""
 
