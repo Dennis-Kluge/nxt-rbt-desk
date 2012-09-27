@@ -20,7 +20,7 @@ import "java.io.BufferedInputStream"
 def process_message(message)
   puts "Message: #{message}"
   parsed_message = message.split(" ")
-  waypoint = Waypoint.new(x: parsed_message[0], y: parsed_message[1], feature: parsed_message[2])
+  waypoint = Waypoint.new(:x => parsed_message[0], :y => parsed_message[1], :feature => parsed_message[2])
   waypoint.save  
 end
 
